@@ -11,13 +11,11 @@ const ep11 = require('../'),
 
 let apiKey = 'API KEY',
     iamEndpoint = 'https://iam.cloud.ibm.com',
-    instanceId = 'INSTANCE ID',
     ep11Address = 'GREP11 URL:PORT';
 
 const creds = new Credentials({
   apiKey: process.env.IAM_API_KEY || apiKey,
   iamUrl: process.env.IAM_ENDPOINT || iamEndpoint,
-  instance: process.env.INSTANCE_ID || instanceId,
   ssl: true
 });
 

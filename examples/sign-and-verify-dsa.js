@@ -64,7 +64,7 @@ async.waterfall([
   (keys, state, cb) => {
     client.Sign({
       State: state,
-      Data: dataToSign
+      Data: Buffer.from(dataToSign)
     }, (err, data={}) => {
       cb(err, keys, data.Signature);
     });
@@ -84,7 +84,7 @@ async.waterfall([
   (signature, state, cb) => {
     client.Verify({
       State: state,
-      Data: dataToSign,
+      Data: Buffer.from(dataToSign),
       Signature: signature
     }, (err, data={}) => {
       cb(err, signature);

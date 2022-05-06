@@ -37,7 +37,7 @@ class Credentials {
       let metadata = new grpc.Metadata();
 
       // Populate metadata object with headers required for authorization
-      util.authMetadata(metadata, this.options.instance, data);
+      util.authMetadata(metadata, data);
 
       return callback(null, metadata);
     });

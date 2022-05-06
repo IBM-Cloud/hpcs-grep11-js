@@ -32,14 +32,22 @@ node $BASEDIR/examples/sign-and-verify-rsa.js
 echo "=== RUN   Example_signAndVerifyUsingECDSAKeyPair"
 node $BASEDIR/examples/sign-and-verify-ecdsa.js
 
+echo "=== RUN Example_signAndVerifyUsingDSAKeyPair"
+node $BASEDIR/examples/sign-and-verify-dsa.js
+
+# NOTE: Using the Dilithium mechanism is hardware and firmware dependent.  If you receive an error indicating
+#       that the CKM_IBM_DILITHIUM mechanism is invalid then the remote HSM currently does not support this mechanism.
+# echo "=== RUN Example_signAndVerifyUsingDilithiumKeyPair"
+# node $BASEDIR/examples/sign-and-verify-dilithium.js
+
 echo "=== RUN   Example_wrapAndUnwrapKey"
 node $BASEDIR/examples/wrap-and-unwrap-key.js
 
+echo "=== RUN   Example_wrapAndUnwrapAttributeBoundKey"
+node $BASEDIR/examples/wrap-and-unwrap-attributebound-key.js
+
 echo "=== RUN   Example_deriveKey"
 node $BASEDIR/examples/derive-keys.js
-
-echo "=== RUN Example_signAndVerifyUsingDSAKeyPair"
-node $BASEDIR/examples/sign-and-verify-dsa.js
 
 echo "=== RUN Example_deriveKeysUsingDH"
 node $BASEDIR/examples/derive-keys-dh.js

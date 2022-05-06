@@ -29,7 +29,6 @@ The examples show how to use the **HPCS offering** to accomplish the following f
 ```
 let apiKey = 'API KEY',
     iamEndpoint = 'https://iam.cloud.ibm.com',
-    instanceId = 'INSTANCE ID',
     ep11Address = 'GREP11 URL:PORT';
 ```
 4. Run through each example by executing `node examples/<grep11_example>.js`. For example: `node examples/derive-keys.js`. There are 11 examples in all, each demonstrating various GREP11 operations:
@@ -42,7 +41,9 @@ let apiKey = 'API KEY',
 * `sign-and-verify-ecdsa.js`: demonstrates the sign and verify operations using the ECDSA mechanism
 * `sign-and-verify-rsa.js`: demonstrates the sign and verify operations using the RSA mechanism
 * `sign-and-verify-dsa.js`: demonstrates the sign and verify operations using the DSA mechanism
+* `sign-and-verify-dilithium.js`: demonstrates the sign and verify operations using the PQC Dilithium mechanism
 * `wrap-and-unwrap-key.js`: demonstrates the wrap and unwrap key operations
+* `wrap-and-unwrap-attributebound-key.js`: demonstrates the wrap and unwrap key operations using the CKM_IBM_ATTRIBUTEBOUND_WRAP mechanism
 * `derive-keys.js`: demonstrates the derive key operation
 * `derive-keys-dh.js`: derives keys and shares encrypted message between two users using Diffie-Hellman key pairs
 

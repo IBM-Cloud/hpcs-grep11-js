@@ -4,6 +4,10 @@ Copyright IBM Corp. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 
+
+// NOTE: Using the Dilithium mechanism is hardware and firmware dependent.  If you receive an error indicating
+//       that the CKM_IBM_DILITHIUM mechanism is invalid then the remote HSM currently does not support this mechanism.
+
 const async = require('async'),
       client = require('./client'),
       crypto = require('crypto'),
@@ -15,7 +19,7 @@ const dataToSign = crypto.createHash('sha256')
   .digest('hex');
 
 const publicKeyTemplate = new util.AttributeMap(
-  new util.Attribute(ep11.CKA_EC_PARAMS, util.OIDNamedCurveP256),
+  new util.Attribute(ep11.CKA_IBM_PQC_PARAMS, util.OIDDilithiumHigh),
   new util.Attribute(ep11.CKA_VERIFY, true),
   new util.Attribute(ep11.CKA_EXTRACTABLE, false),
 );
@@ -27,7 +31,7 @@ const privateKeyTemplate = new util.AttributeMap(
 
 client.GenerateKeyPair({
   Mech: {
-    Mechanism: ep11.CKM_EC_KEY_PAIR_GEN
+    Mechanism: ep11.CKM_IBM_DILITHIUM
   },
   PubKeyTemplate: publicKeyTemplate,
   PrivKeyTemplate: privateKeyTemplate
@@ -38,7 +42,7 @@ client.GenerateKeyPair({
     cb => {
       client.SignInit({
         Mech: {
-          Mechanism: ep11.CKM_ECDSA
+          Mechanism: ep11.CKM_IBM_DILITHIUM
         },
         PrivKey: keys.PrivKeyBytes
       }, (err, data={}) => {
@@ -58,7 +62,7 @@ client.GenerateKeyPair({
     (signature, cb) => {
       client.VerifyInit({
         Mech: {
-          Mechanism: ep11.CKM_ECDSA
+          Mechanism: ep11.CKM_IBM_DILITHIUM
         },
         PubKey: keys.PubKeyBytes
       }, (err, data={}) => {
